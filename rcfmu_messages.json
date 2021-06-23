@@ -1,0 +1,173 @@
+{
+    "constants": [
+        { "type": "uint8_t", "name": "pwm_channels", "value": 8, "desc": "number of pwm output channels" },
+        { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
+        { "type": "uint8_t", "name": "ap_channels", "value": 6, "desc": "number of sbus channels" },
+        { "type": "uint8_t", "name": "mix_matrix_size", "value": 64, "desc": "8 x 8 mix matrix" }
+    ],
+    
+    "enums": [
+        { "name": "enum_nav",
+          "identifiers": [
+              { "name": "none", "desc": "disable nav filter" },
+              { "name": "nav15", "desc": "15-state ins/gps filter" },
+              { "name": "nav15_mag", "desc": "15-state ins/gps/mag filter" }
+          ]
+        }
+    ],
+ 
+    "messages": [
+        // general ack packet
+        {
+            "id": 10,
+            "name": "command_ack",
+            "desc": "acknowledge command completed successfully",
+            "fields": [
+                { "type": "uint8_t", "name": "command_id" },
+                { "type": "uint8_t", "name": "subcommand_id" }
+            ]
+        },
+        // config (json fragment) packets
+        {
+            "name": "config_json",
+            "desc": "json configuration packet",
+            "fields": [
+                { "type": "string", "name": "path", "desc": "parent path for this fragment" },
+                { "type": "string", "name": "json", "desc": "json fragment" }
+            ]
+        },
+        // commands
+        {
+            "name": "command_inceptors",
+            "fields": [
+                { "type": "float", "name": "channel[ap_channels]", "pack_type": "int16_t", "pack_scale": 16384 }
+            ]
+        },
+        {
+            "name": "command_zero_gyros",
+            "fields": [
+            ]
+        },
+        {
+            "name": "command_reset_ekf",
+            "fields": [
+            ]
+        },
+        {
+            "name": "command_cycle_inceptors",
+            "fields": [
+            ]
+        },
+        // sensors
+        {
+            "name": "pilot",
+            "desc": "pilot input",
+            "fields": [
+                { "type": "float", "name": "channel[sbus_channels]", "pack_type": "int16_t", "pack_scale": 16384 },
+                { "type": "uint8_t", "name": "flags" }
+            ]
+        },
+        {
+            "name": "imu",
+            "fields": [
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "int16_t", "name": "raw[6]" },
+                { "type": "int16_t", "name": "cal[10]" }
+            ]
+        },
+        {
+            "name": "aura_nav_pvt",
+            "fields": [
+                { "type": "uint32_t", "name": "iTOW" },
+                { "type": "int16_t", "name": "year" },
+                { "type": "uint8_t", "name": "month" },
+                { "type": "uint8_t", "name": "day" },
+                { "type": "uint8_t", "name": "hour" },
+                { "type": "uint8_t", "name": "min" },
+                { "type": "uint8_t", "name": "sec" },
+                { "type": "uint8_t", "name": "valid" },
+                { "type": "uint32_t", "name": "tAcc" },
+                { "type": "int32_t", "name": "nano" },
+                { "type": "uint8_t", "name": "fixType" },
+                { "type": "uint8_t", "name": "flags" },
+                { "type": "uint8_t", "name": "flags2" },
+                { "type": "uint8_t", "name": "numSV" },
+                { "type": "int32_t", "name": "lon" },
+                { "type": "int32_t", "name": "lat" },
+                { "type": "int32_t", "name": "height" },
+                { "type": "int32_t", "name": "hMSL" },
+                { "type": "uint32_t", "name": "hAcc" },
+                { "type": "uint32_t", "name": "vAcc" },
+                { "type": "int32_t", "name": "velN" },
+                { "type": "int32_t", "name": "velE" },
+                { "type": "int32_t", "name": "velD" },
+                { "type": "uint32_t", "name": "gSpeed" },
+                { "type": "int32_t", "name": "heading" },
+                { "type": "uint32_t", "name": "sAcc" },
+                { "type": "uint32_t", "name": "headingAcc" },
+                { "type": "uint16_t", "name": "pDOP" },
+                { "type": "uint8_t", "name": "reserved[6]" },
+                { "type": "int32_t", "name": "headVeh" },
+                { "type": "int16_t", "name": "magDec" },
+                { "type": "uint16_t", "name": "magAcc" }
+            ]
+        },
+        {
+            "name": "airdata",
+            "fields": [
+                { "type": "float", "name": "baro_press_pa" },
+                { "type": "float", "name": "baro_temp_C" },
+                { "type": "float", "name": "baro_hum" },
+                { "type": "float", "name": "ext_diff_press_pa" },
+                { "type": "float", "name": "ext_static_press_pa" },
+                { "type": "float", "name": "ext_temp_C" },
+                { "type": "uint16_t", "name": "error_count" }
+            ]
+        },
+        {
+            "name": "power",
+            "fields": [
+                { "type": "float", "name": "int_main_v", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "avionics_v" , "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "ext_main_v", "pack_type": "uint16_t", "pack_scale": 100  },
+                { "type": "float", "name": "ext_main_amp", "pack_type": "uint16_t", "pack_scale": 100  }
+            ]
+        },
+        {
+            "name": "status",
+            "fields": [
+                { "type": "uint16_t", "name": "serial_number" },
+                { "type": "uint16_t", "name": "firmware_rev" },
+                { "type": "uint16_t", "name": "master_hz" },
+                { "type": "uint32_t", "name": "baud" },
+                { "type": "uint16_t", "name": "byte_rate" },
+                { "type": "uint16_t", "name": "timer_misses" }
+            ]
+        },
+        {
+            "name": "ekf",
+            "fields": [
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "double", "name": "lat_rad" },
+                { "type": "double", "name": "lon_rad" },
+                { "type": "float", "name": "altitude_m" },
+                { "type": "float", "name": "vn_ms" },
+                { "type": "float", "name": "ve_ms" },
+                { "type": "float", "name": "vd_ms" },
+                { "type": "float", "name": "phi_rad" },
+                { "type": "float", "name": "the_rad" },
+                { "type": "float", "name": "psi_rad" },
+                { "type": "float", "name": "p_bias" },
+                { "type": "float", "name": "q_bias" },
+                { "type": "float", "name": "r_bias" },
+                { "type": "float", "name": "ax_bias" },
+                { "type": "float", "name": "ay_bias" },
+                { "type": "float", "name": "az_bias" },
+                { "type": "float", "name": "max_pos_cov", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "max_vel_cov", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "max_att_cov", "pack_type": "uint16_t", "pack_scale": 10000 },
+                { "type": "uint8_t", "name": "status" }
+            ]
+        }
+    ]
+}

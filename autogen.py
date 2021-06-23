@@ -29,7 +29,7 @@ type_code = { "double": 'd', "float": 'f',
               "uint32_t": 'L', "int32_t": 'l',
               "uint16_t": 'H', "int16_t": 'h',
               "uint8_t": 'B', "int8_t": 'b',
-              "bool": 'B', "string": 'B'
+              "bool": 'B', "string": 'H'
 }
 
 reserved_names = [ 'id', 'len', 'payload', '_buf', '_i', '_pack_string',
@@ -111,7 +111,7 @@ def gen_cpp_header():
     result.append("")
 
     result.append("// max of one byte used to store message len")
-    result.append("static const uint8_t message_max_len = 255;")
+    result.append("static const uint16_t message_max_len = 2048;")
     result.append("");
     
     if root.getLen("constants"):
@@ -170,7 +170,6 @@ def gen_cpp_header():
 
         # generate private c packed struct
         result.append("    // internal structure for packing")
-        result.append("    uint8_t payload[message_max_len];")
         result.append("    #pragma pack(push, 1)")
         result.append("    struct _compact_t {")
         count = m.getLen("fields")
@@ -180,7 +179,7 @@ def gen_cpp_header():
             if f.hasChild("pack_type"):
                 ptype = f.getString("pack_type")
             elif f.getString("type") == "string":
-                ptype = "uint8_t"
+                ptype = "uint16_t"
             elif f.getString("type") in enum_dict:
                 ptype = "uint8_t"
             else:
@@ -222,6 +221,7 @@ def gen_cpp_header():
         result.append("        if ( size > message_max_len ) {")
         result.append("            return false;")
         result.append("        }")
+        result.append("        uint8_t payload[size];")
 
         if count > 0:
             # copy values
@@ -285,9 +285,8 @@ def gen_cpp_header():
         result.append("        if ( message_size > message_max_len ) {")
         result.append("            return false;")
         result.append("        }")
-        result.append("        memcpy(payload, external_message, message_size);")
         if count > 0:
-            result.append("        _compact_t *_buf = (_compact_t *)payload;");
+            result.append("        _compact_t *_buf = (_compact_t *)external_message;");
         result.append("        len = sizeof(_compact_t);")
         for j in range(count):
             line = "        ";
@@ -321,12 +320,12 @@ def gen_cpp_header():
             if index:
                 if f.getString("type") == "string":
                     result.append("        for (int _i=0; _i<%s; _i++) {" % index)
-                    result.append("            %s[_i] = string((char *)&(payload[len]), _buf->%s_len[_i]);" % (name, name))
+                    result.append("            %s[_i] = string((char *)&(external_message[len]), _buf->%s_len[_i]);" % (name, name))
                     result.append("            len += _buf->%s_len[_i];" % name)
                     result.append("        }")
             else:
                 if f.getString("type") == "string":
-                    result.append("        %s = string((char *)&(payload[len]), _buf->%s_len);" % (name, name))
+                    result.append("        %s = string((char *)&(external_message[len]), _buf->%s_len);" % (name, name))
                     result.append("        len += _buf->%s_len;" % name)
         result.append("        return true;")
         result.append("    }")
