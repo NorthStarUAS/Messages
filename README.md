@@ -1,4 +1,4 @@
-# AuraUAS message serialization and deserialization
+# Rice Creek UAS simple/lean message serialization and deserialization
 
 Given a json declaration of binary message structures, automatically
 generate C++ and python code to implement managing, serializing, and
