@@ -110,10 +110,6 @@ def gen_cpp_header():
                 quit()
     result.append("")
 
-    result.append("// max of one byte used to store message len")
-    result.append("static const uint16_t message_max_len = 2048;")
-    result.append("");
-    
     if root.getLen("constants"):
         result.append("// Constants")
         for i in range(root.getLen("constants")):
@@ -206,8 +202,8 @@ def gen_cpp_header():
         result.append("    bool pack() {")
         result.append("        len = sizeof(_compact_t);")
         
-        # it's c, so we have to add some attempt at a size sanity check
-        result.append("        // size sanity check")
+        # add up dynamic packet size
+        result.append("        // compute dynamic packet size (if neede)")
         result.append("        int size = len;")
         for j in range(count):
             f = m.getChild("fields[%d]" % j)
@@ -218,9 +214,6 @@ def gen_cpp_header():
             else:
                 if f.getString("type") == "string":
                     result.append("        size += %s.length();" % name)
-        result.append("        if ( size > message_max_len ) {")
-        result.append("            return false;")
-        result.append("        }")
         result.append("        uint8_t payload[size];")
 
         if count > 0:
@@ -282,9 +275,6 @@ def gen_cpp_header():
 
         # generate unpack code
         result.append("    bool unpack(uint8_t *external_message, int message_size) {")
-        result.append("        if ( message_size > message_max_len ) {")
-        result.append("            return false;")
-        result.append("        }")
         if count > 0:
             result.append("        _compact_t *_buf = (_compact_t *)external_message;");
         result.append("        len = sizeof(_compact_t);")
