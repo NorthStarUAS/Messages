@@ -9,7 +9,7 @@ import props_json
 
 parser = argparse.ArgumentParser(description='autogen messages code.')
 parser.add_argument('input', help='message definition file')
-parser.add_argument('--namespace', default="message", help='optional namespace (for C++)')
+parser.add_argument('--namespace', help='optional namespace (for C++)')
 args = parser.parse_args()
 
 if not os.path.isfile(args.input):
@@ -38,6 +38,13 @@ reserved_names += list(type_code.keys())
 
 basename, ext = os.path.splitext(args.input)
 
+# namespace
+namespace = "message"           # default
+if args.namespace:
+    namespace = args.namespace
+elif root.hasChild("namespace"):
+    namespace = root.getString("namespace")
+    
 # assign id numbers to message names
 id_dict = {}
 next_id = 10
@@ -77,13 +84,14 @@ def gen_cpp_header():
     result.append("#pragma once")
     result.append("")
     result.append("#include <stdint.h>  // uint8_t, et. al.")
+    result.append("#include <stdlib.h>  // malloc() / free()")
     result.append("#include <string.h>  // memcpy()")
     result.append("")
     if has_dynamic_string:
         result.append("#include <string>")
         result.append("using std::string;")
         result.append("")
-    result.append("namespace %s {" % args.namespace)
+    result.append("namespace %s {" % namespace)
     result.append("")
     result.append("static inline int32_t intround(float f) {")
     result.append("    return (int32_t)(f >= 0.0 ? (f + 0.5) : (f - 0.5));")
@@ -150,11 +158,12 @@ def gen_cpp_header():
                 print("Aborting.")
                 quit()
 
-        # generate public c message struct
+        # generate public c message class
         id = id_dict[m.getString("name")]
         result.append("// Message: %s (id: %d)" % (m.getString("name"), id))
-        result.append("struct %s_t {" % (m.getString("name")))
-        result.append("    // public fields")
+        result.append("class %s_t {" % (m.getString("name")))
+        result.append("public:")
+        result.append("")
         for j in range(m.getLen("fields")):
             f = m.getChild("fields[%d]" % j)
             line = "    %s %s" % (f.getString("type"), f.getString("name"))
@@ -192,10 +201,17 @@ def gen_cpp_header():
         result.append("")
 
         # generate built in constants
-        result.append("    // public info fields")
+        result.append("    // id, ptr to payload and len")
         id = id_dict[m.getString("name")]
         result.append("    static const uint8_t id = %s;" % id)
+        result.append("    uint8_t *payload = nullptr;")
         result.append("    int len = 0;")
+        result.append("")
+
+        # need a destructor to free memory that pack() mallocs
+        result.append("    ~%s_t() {" % (m.getString("name")))
+        result.append("        free(payload);")
+        result.append("    }")
         result.append("")
         
         # generate pack code
@@ -214,7 +230,7 @@ def gen_cpp_header():
             else:
                 if f.getString("type") == "string":
                     result.append("        size += %s.length();" % name)
-        result.append("        uint8_t payload[size];")
+        result.append("        payload = (uint8_t *)malloc(size);")
 
         if count > 0:
             # copy values
@@ -321,7 +337,7 @@ def gen_cpp_header():
         result.append("    }")
         result.append("};")
         result.append("")
-    result.append("} // namespace %s" % args.namespace)
+    result.append("} // namespace %s" % namespace)
     return result
 
 def gen_python_module():

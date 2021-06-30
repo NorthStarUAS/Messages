@@ -1,4 +1,6 @@
 {
+    "namespace": "rcfmu_message",
+    
     "constants": [
         { "type": "uint8_t", "name": "pwm_channels", "value": 8, "desc": "number of pwm output channels" },
         { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
