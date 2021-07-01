@@ -83,6 +83,15 @@ def gen_cpp_header():
                 
     result.append("#pragma once")
     result.append("")
+    result.append("// Ardupilot realloc() support")
+    result.append("#if defined(ARDUPILOT_BUILD)")
+    result.append("  #include <AP_HAL/AP_HAL.h>")
+    result.append("  extern const AP_HAL::HAL& hal;");
+    result.append("  #define REALLOC(X, Y) hal.util->std_realloc( (X), (Y) )")
+    result.append("#else")
+    result.append("  #define REALLOC(X, Y) std::realloc( (X), (Y) )")
+    result.append("#endif")
+    result.append("")
     result.append("#include <stdint.h>  // uint8_t, et. al.")
     result.append("#include <stdlib.h>  // malloc() / free()")
     result.append("#include <string.h>  // memcpy()")
@@ -230,7 +239,7 @@ def gen_cpp_header():
             else:
                 if f.getString("type") == "string":
                     result.append("        size += %s.length();" % name)
-        result.append("        payload = (uint8_t *)malloc(size);")
+        result.append("        payload = (uint8_t *)REALLOC(payload, size);")
 
         if count > 0:
             # copy values
