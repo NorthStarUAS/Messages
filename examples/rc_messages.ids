@@ -29,5 +29,6 @@
     "event_v2": 44,
     "command_v1": 28,
     "gps_v5": 49,
-    "imu_v6": 50
+    "imu_v6": 50,
+    "pilot_v4": 51
 }

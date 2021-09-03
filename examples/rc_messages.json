@@ -2,6 +2,7 @@
     "namespace": "rc_message",
     
     "constants": [
+        { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
         { "type": "uint8_t", "name": "max_raw_sats", "value": 12, "desc": "maximum array size to store satellite raw data" } 
     ],
     "messages": [
@@ -353,6 +354,17 @@
                 { "type": "float", "name": "timestamp_sec" },
                 { "type": "float", "name": "channel[8]", "pack_type": "int16_t", "pack_scale": 20000 },
                 { "type": "uint8_t", "name": "status" }
+            ]
+        },
+        {
+            "name": "pilot_v4",
+            "desc": "pilot v4 message",
+            "date": "September 3, 2021",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "channel[sbus_channels]", "pack_type": "int16_t", "pack_scale": 20000 },
+                { "type": "uint8_t", "name": "flags" }
             ]
         },
         {

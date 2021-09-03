@@ -404,14 +404,12 @@ def gen_cpp_header():
                     else:
                         tp = "Int"
                     line += "node.set%s(\"%s\"" % (tp, name)
-                    if index:
-                        line += ", _i"
                     line += ", "
                     if f.getString("type") in enum_dict:
                         line += "(%s)" % f.getString("type")                    
                     line += "%s" % name
                     if index:
-                        line += "[_i]"
+                        line += "[_i], _i"
                     line += ");"
                     result.append(line)
             result.append("    }")
@@ -461,6 +459,8 @@ def gen_python_module():
     result = []
 
     result.append("import struct")
+    if not args.no_props:
+        result.append("from PropertyTree import PropertyNode")
     result.append("")
 
     # generate message id constants
@@ -704,7 +704,61 @@ def gen_python_module():
                 if f.getString("type") == "string":
                     result.append("        self.%s = extra[:self.%s_len].decode()" % (name, name))
                     result.append("        extra = extra[self.%s_len:]" % name)
-        result.append("")
+        
+        if not args.no_props:
+            # generate msg2props code
+            count = m.getLen("fields")
+            result.append("")
+            result.append("    def msg2props(self, node):")
+            if count > 0:
+                for j in range(count):
+                    line = "        ";
+                    f = m.getChild("fields/%d" % j)
+                    (name, index) = field_name_helper(f)
+                    if index:
+                        line += "for _i in range(%s): " % index
+                    if f.getString("type") in type_prop:
+                        tp = type_prop[f.getString("type")]
+                    else:
+                        tp = "Int"
+                    line += "node.set%s(\"%s\"" % (tp, name)
+                    line += ", "
+                    if f.getString("type") in enum_dict:
+                        line += "(%s)" % f.getString("type")                    
+                    line += "self.%s" % name
+                    if index:
+                        line += "[_i]"
+                    if index:
+                        line += ", _i"
+                    line += ")"
+                    result.append(line)
+
+            # generate props2msg code
+            count = m.getLen("fields")
+            result.append("")
+            result.append("    def props2msg(self, node):")
+            if count > 0:
+                for j in range(count):
+                    line = "        ";
+                    f = m.getChild("fields/%d" % j)
+                    (name, index) = field_name_helper(f)
+                    if index:
+                        line += "for _i in range(%s): " % index
+                    if f.getString("type") in type_prop:
+                        tp = type_prop[f.getString("type")]
+                    else:
+                        tp = "Int"
+                    line += name
+                    if index:
+                        line += "[_i]"
+                    line += " = node.get%s(\"%s\"" % (tp, name)
+                    if index:
+                        line += ", _i"
+                    line += ")"
+                    if f.getString("type") in enum_dict:
+                        line += "(%s)" % f.getString("type")                    
+                    result.append(line)
+            result.append("")
 
     return result
 

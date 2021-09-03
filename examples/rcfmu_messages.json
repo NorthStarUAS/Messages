@@ -65,16 +65,33 @@
             "name": "pilot",
             "desc": "pilot input",
             "fields": [
-                { "type": "float", "name": "channel[sbus_channels]", "pack_type": "int16_t", "pack_scale": 16384 },
+                { "type": "float", "name": "channel[sbus_channels]", "pack_type": "int16_t", "pack_scale": 20000 },
                 { "type": "uint8_t", "name": "flags" }
             ]
         },
         {
             "name": "imu",
             "fields": [
+                // 3754.82165 = +/-500dps (8.7266rps) spread across int16
+                // 835.296217 = +/-4g (39.228mps^2) spread across int16
+                // 3000 = mags might range +/- 10?
                 { "type": "uint32_t", "name": "millis" },
-                { "type": "int16_t", "name": "raw[6]" },
-                { "type": "int16_t", "name": "cal[10]" }
+                { "type": "float", "name": "ax_raw", "pack_type": "int16_t", "pack_scale": 835.296217 },
+                { "type": "float", "name": "ay_raw", "pack_type": "int16_t", "pack_scale": 835.296217 },
+                { "type": "float", "name": "az_raw", "pack_type": "int16_t", "pack_scale": 835.296217 },
+                { "type": "float", "name": "hx_raw", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "hy_raw", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "hz_raw", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "ax_mps2", "pack_type": "int16_t", "pack_scale": 835.296217 },
+                { "type": "float", "name": "ay_mps2", "pack_type": "int16_t", "pack_scale": 835.296217 },
+                { "type": "float", "name": "az_mps2", "pack_type": "int16_t", "pack_scale": 835.296217 },
+                { "type": "float", "name": "p_rps", "pack_type": "int16_t", "pack_scale": 3754.82165 },
+                { "type": "float", "name": "q_rps", "pack_type": "int16_t", "pack_scale": 3754.82165 },
+                { "type": "float", "name": "r_rps", "pack_type": "int16_t", "pack_scale": 3754.82165 },
+                { "type": "float", "name": "hx", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "hy", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "hz", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 250 }
             ]
         },
         {
