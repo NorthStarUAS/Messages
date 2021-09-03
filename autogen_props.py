@@ -52,16 +52,39 @@ if args.namespace:
     namespace = args.namespace
 elif root.hasChild("namespace"):
     namespace = root.getString("namespace")
-    
-# assign id numbers to message names
-id_dict = {}
+
+# load and/or assign id numbers to message names
+id_dict = root.getChild("id_dict")
 next_id = 10
+if id_dict.load(basename + ".ids"):
+    # found an existing dictionary, determine next available id number
+    for name in id_dict.getChildren(False):
+        val = id_dict.getInt(name)
+        if val >= next_id:
+            next_id = val + 1
+    print("loaded exisiting id dictionary, next available id:", next_id)
+
+# scan messages and assign id's if needed
 for i in range(root.getLen("messages")):
     m = root.getChild("messages/%d" % i)
+    if not m.hasChild("name"):
+        print("error: unnamed message ...")
+        m.pretty_print()
+        quit()
+    name = m.getString("name")
     if m.hasChild("id"):
-        next_id = m.getInt("id")
-    id_dict[m.getString("name")] = next_id
-    next_id += 1
+        val = m.getInt("id")
+        id_dict.setInt(name, val)
+        if val >= next_id:
+            next_id = val + 1
+    elif id_dict.hasChild(name):
+        # already assigned an id
+        pass
+    else:
+        # need to assign an id
+        id_dict.setInt(name, next_id)
+        next_id += 1
+id_dict.pretty_print()
 
 def field_name_helper(f):
     name = f.getString("name")
@@ -126,7 +149,7 @@ def gen_cpp_header():
     result.append("// Message id constants")
     for i in range(root.getLen("messages")):
         m = root.getChild("messages/%d" % i)
-        id = id_dict[m.getString("name")]
+        id = id_dict.getInt(m.getString("name"))
         result.append("const uint8_t %s_id = %d;" % (m.getString("name"), id))
         # quick checks
         for j in range(m.getLen("fields")):
@@ -179,7 +202,7 @@ def gen_cpp_header():
                 quit()
 
         # generate public c message class
-        id = id_dict[m.getString("name")]
+        id = id_dict.getInt(m.getString("name"))
         result.append("// Message: %s (id: %d)" % (m.getString("name"), id))
         result.append("class %s_t {" % (m.getString("name")))
         result.append("public:")
@@ -222,7 +245,7 @@ def gen_cpp_header():
 
         # generate built in constants
         result.append("    // id, ptr to payload and len")
-        id = id_dict[m.getString("name")]
+        id = id_dict.getInt(m.getString("name"))
         result.append("    static const uint8_t id = %s;" % id)
         result.append("    uint8_t *payload = nullptr;")
         result.append("    int len = 0;")
@@ -444,7 +467,7 @@ def gen_python_module():
     result.append("# Message id constants")
     for i in range(root.getLen("messages")):
         m = root.getChild("messages/%d" % i)
-        id = id_dict[m.getString("name")]
+        id = id_dict.getInt(m.getString("name"))
         result.append("%s_id = %s" % (m.getString("name"), id))
     result.append("")
 
@@ -502,7 +525,7 @@ def gen_python_module():
                 quit()
 
         # generate public message class
-        id = id_dict[m.getString("name")]
+        id = id_dict.getInt(m.getString("name"))
         result.append("# Message: %s" % m.getString("name"))
         result.append("# Id: %d" % id)
         result.append("class %s():" % (m.getString("name")))
@@ -701,4 +724,5 @@ if True:
         f.write(line + "\n")
     f.close()
 
-print(id_dict)
+id_dict.pretty_print()
+id_dict.save(basename + ".ids")
