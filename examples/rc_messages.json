@@ -218,32 +218,6 @@
             ]
         },
         {
-            "name": "filter_v3",
-            "desc": "nav filter v3 message",
-            "date": "May 9, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "double", "name": "latitude_deg" },
-                { "type": "double", "name": "longitude_deg" },
-                { "type": "float", "name": "altitude_m" },
-                { "type": "float", "name": "vn_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "ve_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vd_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "yaw_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "p_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "q_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "r_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "ax_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "ay_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "az_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "uint8_t", "name": "sequence_num" },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "filter_v4",
             "desc": "nav filter v4 message",
             "date": "March 21, 2018",
@@ -296,6 +270,50 @@
                 { "type": "float", "name": "max_att_cov", "pack_type": "uint16_t", "pack_scale": 10000 },
                 { "type": "uint8_t", "name": "sequence_num" },
                 { "type": "uint8_t", "name": "status" }
+            ]
+        },
+        {
+            "name": "nav_v6",
+            "desc": "nav filter v6 message",
+            "date": "September 4, 2021",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "int32_t", "name": "latitude_raw" },
+                { "type": "int32_t", "name": "longitude_raw" },
+                { "type": "float", "name": "altitude_m" },
+                { "type": "float", "name": "vn_mps", "pack_type": "int16_t", "pack_scale": 100 },
+                { "type": "float", "name": "ve_mps", "pack_type": "int16_t", "pack_scale": 100 },
+                { "type": "float", "name": "vd_mps", "pack_type": "int16_t", "pack_scale": 100 },
+                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 50 },
+                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 50 },
+                { "type": "float", "name": "yaw_deg", "pack_type": "int16_t", "pack_scale": 50 },
+                { "type": "uint8_t", "name": "sequence_num" },
+                { "type": "uint8_t", "name": "status" }
+            ]
+        },
+        {
+            "name": "nav_metrics_v6",
+            "desc": "nav filter metrics v6 message",
+            "date": "September 4, 2021",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "metrics_millis" },
+                { "type": "float", "name": "p_bias", "pack_type": "int16_t", "pack_scale": 10000 },
+                { "type": "float", "name": "q_bias", "pack_type": "int16_t", "pack_scale": 10000 },
+                { "type": "float", "name": "r_bias", "pack_type": "int16_t", "pack_scale": 10000 },
+                { "type": "float", "name": "ax_bias", "pack_type": "int16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "ay_bias", "pack_type": "int16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "az_bias", "pack_type": "int16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "Pp0", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "Pp1", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "Pp2", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "Pv0", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "Pv1", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "Pv2", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "Pa0", "pack_type": "uint16_t", "pack_scale": 10000 },
+                { "type": "float", "name": "Pa1", "pack_type": "uint16_t", "pack_scale": 10000 },
+                { "type": "float", "name": "Pa2", "pack_type": "uint16_t", "pack_scale": 10000 }
             ]
         },
         {
@@ -364,7 +382,7 @@
                 { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "float", "name": "channel[sbus_channels]", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "uint8_t", "name": "flags" }
+                { "type": "uint8_t", "name": "failsafe" }
             ]
         },
         {

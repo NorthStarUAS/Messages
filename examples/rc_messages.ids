@@ -30,5 +30,7 @@
     "command_v1": 28,
     "gps_v5": 49,
     "imu_v6": 50,
-    "pilot_v4": 51
+    "pilot_v4": 51,
+    "nav_v6": 52,
+    "nav_metrics_v6": 53
 }
