@@ -160,25 +160,6 @@
             ]
         },
         {
-            "name": "airdata_v5",
-            "desc": "airdata v5 message",
-            "date": "April 30, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "float", "name": "pressure_mbar", "pack_type": "uint16_t", "pack_scale": 10 },
-                { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "airspeed_smoothed_kt", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "altitude_smoothed_m" },
-                { "type": "float", "name": "altitude_true_m" },
-                { "type": "float", "name": "pressure_vertical_speed_fps", "pack_type": "int16_t", "pack_scale": 600 },
-                { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "wind_speed_kt", "pack_type": "uint8_t", "pack_scale": 4 },
-                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "airdata_v6",
             "desc": "airdata v6 message",
             "date": "March 21, 2018",
@@ -215,6 +196,25 @@
                 { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
                 { "type": "uint16_t", "name": "error_count" },
                 { "type": "uint8_t", "name": "status" }
+            ]
+        },
+        {
+            "name": "airdata_v8",
+            "desc": "airdata v8 message",
+            "date": "September 5, 2021",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "baro_press_pa", "pack_type": "uint16_t", "pack_scale": 0.5 },
+                { "type": "float", "name": "diff_press_pa", "pack_type": "uint16_t", "pack_scale": 10 },
+                { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
+                { "type": "float", "name": "airspeed_smoothed_kt", "pack_type": "int16_t", "pack_scale": 100 },
+                { "type": "float", "name": "altitude_smoothed_m" },
+                { "type": "float", "name": "altitude_true_m" },
+                { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "wind_speed_kt", "pack_type": "uint8_t", "pack_scale": 5 },
+                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
+                { "type": "uint16_t", "name": "error_count" }
             ]
         },
         {
