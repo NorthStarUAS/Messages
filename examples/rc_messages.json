@@ -2,8 +2,7 @@
     "namespace": "rc_message",
     
     "constants": [
-        { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
-        { "type": "uint8_t", "name": "max_raw_sats", "value": 12, "desc": "maximum array size to store satellite raw data" } 
+        { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" }
     ],
     "messages": [
         {
@@ -68,21 +67,6 @@
                 { "type": "float", "name": "vAcc_m", "pack_type": "int16_t", "pack_scale": 100 },
                 { "type": "float", "name": "hdop", "pack_type": "int16_t", "pack_scale": 100 },
                 { "type": "float", "name": "vdop", "pack_type": "int16_t", "pack_scale": 100 }
-            ]
-        },
-        {
-            // lots of things I don't like about this message, but it is a starting point to help move other code forward
-            "name": "gps_raw_v1",
-            "desc": "gps raw v1 message",
-            "date": "August 5, 2020",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "double", "name": "receiver_tow" },
-                { "type": "uint8_t", "name": "num_sats" },
-                { "type": "uint8_t", "name": "svid[max_raw_sats]" },
-                { "type": "double", "name": "pseudorange[max_raw_sats]" },
-                { "type": "double", "name": "doppler[max_raw_sats]" }
             ]
         },
         {
@@ -386,6 +370,18 @@
             ]
         },
         {
+            "name": "power_v1",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "avionics_vcc" , "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "main_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.5 }
+            ]
+        },
+        {
             "name": "ap_status_v4",
             "desc": "autopilot status v4 message",
             "date": "May 7, 2017",
@@ -524,28 +520,6 @@
                 { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.1 }
-            ]
-        },
-        {
-            // depricate
-            "name": "payload_v2",
-            "desc": "payload v2 message",
-            "date": "April 30, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "uint16_t", "name": "trigger_num" }
-            ]
-        },
-        {
-            // depricate
-            "name": "payload_v3",
-            "desc": "payload v3 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "uint16_t", "name": "trigger_num" }
             ]
         },
         {

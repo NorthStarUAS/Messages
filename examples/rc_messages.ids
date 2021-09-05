@@ -33,5 +33,6 @@
     "pilot_v4": 51,
     "nav_v6": 52,
     "nav_metrics_v6": 53,
-    "airdata_v8": 54
+    "airdata_v8": 54,
+    "power_v1": 55
 }
