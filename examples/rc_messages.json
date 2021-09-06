@@ -117,7 +117,7 @@
         },
         {
             "name": "imu_v6",
-            "desc": "imu_v6 message",
+            "desc": "imu v6 message",
             "date": "September 3, 2021",
             "fields": [
                 // 3754.82165 = +/-500dps (8.7266rps) spread across int16
@@ -546,10 +546,18 @@
         {
             "name": "command_v1",
             "desc": "command v1 message",
-            "date": "March 21, 2018",
+            "date": "September 5, 2021",
             "fields": [
-                { "type": "uint8_t", "name": "sequence_num" },
+                { "type": "uint16_t", "name": "sequence_num" },
                 { "type": "string", "name": "message" }
+            ]
+        },
+        {
+            "name": "ack_v1",
+            "desc": "acknowledge command completed successfully",
+            "fields": [
+                { "type": "uint16_t", "name": "sequence_num" },
+                { "type": "uint8_t", "name": "result" }
             ]
         }
     ]
