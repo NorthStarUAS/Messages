@@ -2,8 +2,10 @@
     "namespace": "rc_message",
     
     "constants": [
-        { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" }
+        { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
+        { "type": "uint8_t", "name": "ap_channels", "value": 6, "desc": "number of sbus channels" }
     ],
+    
     "messages": [
         {
             "name": "gps_v3",
@@ -336,6 +338,15 @@
                 { "type": "uint8_t", "name": "status" }
             ]
         },
+        {
+            "name": "inceptors_v4",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "channel[ap_channels]", "pack_type": "int16_t", "pack_scale": 2000 }
+            ]
+        },
+
         {
             "name": "pilot_v2",
             "desc": "pilot v2 message",

@@ -36,5 +36,6 @@
     "airdata_v8": 54,
     "power_v1": 55,
     "status_v7": 56,
-    "ack_v1": 57
+    "ack_v1": 57,
+    "inceptors_v4": 58
 }
