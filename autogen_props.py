@@ -391,7 +391,7 @@ def gen_cpp_header():
             result.append("        msg2props(node);");
             result.append("    }");
             result.append("")
-            result.append("    void msg2props(PropertyNode node) {")
+            result.append("    void msg2props(PropertyNode &node) {")
             if count > 0:
                 for j in range(count):
                     line = "        ";
@@ -425,7 +425,7 @@ def gen_cpp_header():
             result.append("        props2msg(node);");
             result.append("    }");
             result.append("")
-            result.append("    void props2msg(PropertyNode node) {")
+            result.append("    void props2msg(PropertyNode &node) {")
             if count > 0:
                 for j in range(count):
                     line = "        ";

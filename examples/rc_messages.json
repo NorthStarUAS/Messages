@@ -194,11 +194,14 @@
                 { "type": "float", "name": "baro_press_pa", "pack_type": "uint16_t", "pack_scale": 0.5 },
                 { "type": "float", "name": "diff_press_pa", "pack_type": "uint16_t", "pack_scale": 10 },
                 { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
-                { "type": "float", "name": "airspeed_smoothed_kt", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "altitude_smoothed_m" },
+                { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
+                { "type": "float", "name": "altitude_agl_m" },
                 { "type": "float", "name": "altitude_true_m" },
+                { "type": "float", "name": "altitude_ground_m" },
+                { "type": "uint8_t", "name": "is_airborne" },
+                { "type": "uint32_t", "name": "flight_timer_millis" },
                 { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "wind_speed_kt", "pack_type": "uint8_t", "pack_scale": 5 },
+                { "type": "float", "name": "wind_speed_mps", "pack_type": "uint8_t", "pack_scale": 10 },
                 { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
                 { "type": "uint16_t", "name": "error_count" }
             ]
@@ -339,14 +342,14 @@
             ]
         },
         {
-            "name": "inceptors_v4",
+            "name": "effectors_v1",
+            "date": "September 18, 2021",
             "fields": [
                 { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
-                { "type": "float", "name": "channel[ap_channels]", "pack_type": "int16_t", "pack_scale": 2000 }
+                { "type": "float", "name": "channel[8]", "pack_type": "int16_t", "pack_scale": 20000 }
             ]
         },
-
         {
             "name": "pilot_v2",
             "desc": "pilot v2 message",
@@ -377,7 +380,17 @@
                 { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "float", "name": "channel[sbus_channels]", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "uint8_t", "name": "failsafe" }
+                { "type": "uint8_t", "name": "failsafe" },
+                { "type": "uint8_t", "name": "master_switch" },
+                { "type": "uint8_t", "name": "throttle_safety" }
+            ]
+        },
+        {
+            "name": "inceptors_v1",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "channel[ap_channels]", "pack_type": "int16_t", "pack_scale": 2000 }
             ]
         },
         {
@@ -390,51 +403,6 @@
                 { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.5 }
-            ]
-        },
-        {
-            "name": "ap_status_v4",
-            "desc": "autopilot status v4 message",
-            "date": "May 7, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "float", "name": "groundtrack_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint16_t", "name": "altitude_msl_ft" },
-                { "type": "uint16_t", "name": "altitude_ground_m" },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "airspeed_kt", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint16_t", "name": "flight_timer" },
-                { "type": "uint16_t", "name": "target_waypoint_idx" },
-                { "type": "double", "name": "wp_longitude_deg" },
-                { "type": "double", "name": "wp_latitude_deg" },
-                { "type": "uint16_t", "name": "wp_index" },
-                { "type": "uint16_t", "name": "route_size" },
-                { "type": "uint8_t", "name": "sequence_num" }
-            ]
-        },
-        {
-            "name": "ap_status_v5",
-            "desc": "autopilot status v5 message",
-            "date": "June 14, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "uint8_t", "name": "flags" },
-                { "type": "float", "name": "groundtrack_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint16_t", "name": "altitude_msl_ft" },
-                { "type": "uint16_t", "name": "altitude_ground_m" },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "airspeed_kt", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint16_t", "name": "flight_timer" },
-                { "type": "uint16_t", "name": "target_waypoint_idx" },
-                { "type": "double", "name": "wp_longitude_deg" },
-                { "type": "double", "name": "wp_latitude_deg" },
-                { "type": "uint16_t", "name": "wp_index" },
-                { "type": "uint16_t", "name": "route_size" },
-                { "type": "uint8_t", "name": "sequence_num" }
             ]
         },
         {
@@ -485,6 +453,38 @@
                 { "type": "uint8_t", "name": "task_id" },
                 { "type": "uint16_t", "name": "task_attribute" },
                 { "type": "uint8_t", "name": "sequence_num" }
+            ]
+        },
+        {
+            "name": "ap_targets_v1",
+            "desc": "autopilot targets v1 message",
+            "date": "September 7, 2021",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "groundtrack_deg", "pack_type": "int16_t", "pack_scale": 10 },
+                { "type": "float", "name": "altitude_agl_ft", "pack_type": "uint16_t", "pack_scale": 10 },
+                { "type": "float", "name": "airspeed_kt", "pack_type": "int16_t", "pack_scale": 10 },
+                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
+                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 }
+            ]
+        },
+        {
+            "name": "mission_v1",
+            "desc": "mission v1 message",
+            "date": "September 7, 2021",
+            "fields": [
+                { "type": "uint8_t", "name": "index" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "uint8_t", "name": "is_airborne" },
+                { "type": "float", "name": "flight_timer", "pack_type": "uint16_t", "pack_scale": 1  },
+                { "type": "string", "name": "task_name" },
+                { "type": "uint16_t", "name": "task_attribute" },
+                { "type": "uint16_t", "name": "route_size" },
+                { "type": "uint16_t", "name": "target_waypoint_idx" },
+                { "type": "uint16_t", "name": "wp_index" },
+                { "type": "int32_t", "name": "wp_longitude_raw" },
+                { "type": "int32_t", "name": "wp_latitude_raw" }
             ]
         },
         {

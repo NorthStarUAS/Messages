@@ -37,5 +37,9 @@
     "power_v1": 55,
     "status_v7": 56,
     "ack_v1": 57,
-    "inceptors_v4": 58
+    "inceptors_v4": 58,
+    "ap_targets_v1": 59,
+    "mission_v1": 60,
+    "effectors_v1": 61,
+    "inceptors_v1": 62
 }
