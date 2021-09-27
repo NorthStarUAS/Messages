@@ -351,17 +351,6 @@
             ]
         },
         {
-            "name": "pilot_v2",
-            "desc": "pilot v2 message",
-            "date": "April 30, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "float", "name": "channel[8]", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "pilot_v3",
             "desc": "pilot v3 message",
             "date": "March 21, 2018",
