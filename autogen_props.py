@@ -748,6 +748,7 @@ def gen_python_module():
                         tp = type_prop[f.getString("type")]
                     else:
                         tp = "Int"
+                    line += "self."
                     line += name
                     if index:
                         line += "[_i]"
