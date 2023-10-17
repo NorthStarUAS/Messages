@@ -111,7 +111,7 @@ def gen_cpp_header():
             name = f.getString("name")
             if f.getString("type") == "string":
                 has_dynamic_string = True
-                
+
     result.append("#pragma once")
     result.append("")
     result.append("// Ardupilot realloc() support")
@@ -188,7 +188,7 @@ def gen_cpp_header():
                 result.append(line)
             result.append("};")
         result.append("")
-    
+
     for i in range(root.getLen("messages")):
         m = root.getChild("messages/%d" % i)
         print("Processing:", m.getString("name"))
@@ -256,11 +256,11 @@ def gen_cpp_header():
         result.append("        free(payload);")
         result.append("    }")
         result.append("")
-        
+
         # generate pack code
         result.append("    bool pack() {")
         result.append("        len = sizeof(_compact_t);")
-        
+
         # add up dynamic packet size
         result.append("        // compute dynamic packet size (if neede)")
         result.append("        int size = len;")
@@ -356,7 +356,7 @@ def gen_cpp_header():
                     ptype = f.getString("pack_type")
                 else:
                     if f.getString("type") in enum_dict:
-                        line += "(%s)" % f.getString("type")                    
+                        line += "(%s)" % f.getString("type")
                     line += "_buf->%s" % name
                     if index:
                         line += "[_i]"
@@ -406,7 +406,7 @@ def gen_cpp_header():
                     line += "node.set%s(\"%s\"" % (tp, name)
                     line += ", "
                     if f.getString("type") in enum_dict:
-                        line += "(%s)" % f.getString("type")                    
+                        line += "(%s)" % f.getString("type")
                     line += "%s" % name
                     if index:
                         line += "[_i], _i"
@@ -445,11 +445,11 @@ def gen_cpp_header():
                         line += ", _i"
                     line += ")"
                     if f.getString("type") in enum_dict:
-                        line += "(%s)" % f.getString("type")                    
+                        line += "(%s)" % f.getString("type")
                     line += ";"
                     result.append(line)
             result.append("    }")
-        
+
         result.append("};")
         result.append("")
     result.append("} // namespace %s" % namespace)
@@ -482,7 +482,7 @@ def gen_python_module():
                 line += "  # %s" % m.getString("desc")
             result.append(line)
         result.append("")
-    
+
     enum_dict = {}
     if root.getLen("enums"):
         result.append("# Enums")
@@ -496,7 +496,7 @@ def gen_python_module():
                     line += "  # %s" % f.getChild("desc")
                 result.append(line)
         result.append("")
-    
+
     for i in range(root.getLen("messages")):
         m = root.getChild("messages/%d" % i)
         print("Processing:", m.getString("name"))
@@ -617,7 +617,7 @@ def gen_python_module():
             else:
                 if f.getString("type") == "string":
                     result.append("        msg += str.encode(self.%s)" % name)
-                        
+
         result.append("        return msg")
         result.append("")
 
@@ -704,7 +704,7 @@ def gen_python_module():
                 if f.getString("type") == "string":
                     result.append("        self.%s = extra[:self.%s_len].decode()" % (name, name))
                     result.append("        extra = extra[self.%s_len:]" % name)
-        
+
         if not args.no_props:
             # generate msg2props code
             count = m.getLen("fields")
@@ -724,7 +724,7 @@ def gen_python_module():
                     line += "node.set%s(\"%s\"" % (tp, name)
                     line += ", "
                     if f.getString("type") in enum_dict:
-                        line += "(%s)" % f.getString("type")                    
+                        line += "(%s)" % f.getString("type")
                     line += "self.%s" % name
                     if index:
                         line += "[_i]"
@@ -757,7 +757,7 @@ def gen_python_module():
                         line += ", _i"
                     line += ")"
                     if f.getString("type") in enum_dict:
-                        line += "(%s)" % f.getString("type")                    
+                        line += "(%s)" % f.getString("type")
                     result.append(line)
             result.append("")
 
