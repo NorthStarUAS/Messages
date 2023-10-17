@@ -1,4 +1,4 @@
-# Rice Creek UAS simple/lean message serialization and deserialization
+# NorthStar UAS simple/lean message serialization and deserialization
 
 Given a json declaration of binary message structures, automatically
 generate C++ and python code to implement managing, serializing, and
@@ -29,6 +29,7 @@ intention is for this system to remain small and simple.
 * example.py: An example python host program.
 
 ## Why is this important?
+
 * Hand crafted messaging systems can be fragile.  They can be
   difficult to maintain.  They often do not scale well.  A manual
   change on one end of the pipe requires changes on the other end (and
@@ -107,7 +108,7 @@ another one?
   than some gigantic, do everything tool.  We just reinvented the
   wheel, but we made it the exact size and fit our projects.
 
-## Examples of things to watch out for:
+## Examples of things to watch out for
 
 * I want to represent a floating point value as a uint16_t.  Ex: I am
   sending alitude (floating point) as a uint16_t to save 2 bytes and I
@@ -116,7 +117,7 @@ another one?
 
   Wrong: { "type": "uint16_t", "name": "altitude_msl_ft" }
   -- Python will spew an error trying to pack a float type into a uint16_t
-  
+
   Right: { "type": "float", "name": "altitude_msl_ft", "pack_type": "uint16_t", "pack_scale": 1 }
   -- This is a bit more verbose, but allows the correct type conversions to
   happen under the hood.
