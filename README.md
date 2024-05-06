@@ -1,4 +1,8 @@
-# Messages -- Simple lean message serialization and deserialization (with property tree support!)
+# Messages
+
+Simple lean message serialization and deserialization (with property tree support!)
+
+## Overview
 
 Given a json declaration of binary message structures, automatically
 generate C++ and python code to implement managing, serializing, and
