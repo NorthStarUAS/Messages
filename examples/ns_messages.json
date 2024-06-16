@@ -196,8 +196,8 @@
                 { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
                 { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
                 { "type": "float", "name": "altitude_agl_m" },
-                { "type": "float", "name": "altitude_true_m" },
-                { "type": "float", "name": "altitude_ground_m" },
+                { "type": "float", "name": "altitude_true_m" }, // not computed on fmu
+                { "type": "float", "name": "altitude_ground_m" }, // there just isn't a better place for this
                 { "type": "uint8_t", "name": "is_airborne" },
                 { "type": "uint32_t", "name": "flight_timer_millis" },
                 { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
