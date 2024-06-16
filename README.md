@@ -1,6 +1,7 @@
-# Messages
+# NorthStar UAS Messages
 
-Simple lean message serialization and deserialization (with property tree support!)
+Simple lean message serialization and deserialization (with property tree
+support!)
 
 ## Overview
 
