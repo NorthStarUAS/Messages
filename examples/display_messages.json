@@ -1,0 +1,48 @@
+{
+    "namespace": "display_messages",
+
+    "messages": [
+        {
+            "name": "display_v1",
+            "desc": "display values bundle v1",
+            "date": "June 25, 2024",
+            "fields": [
+                { "type": "double", "name": "time_sec" },
+                { "type": "double", "name": "longitude_deg" },
+                { "type": "double", "name": "latitude_deg" },
+                { "type": "float", "name": "altitude_m" },
+                { "type": "float", "name": "altitude_agl_m" },
+                { "type": "float", "name": "vn_mps" },
+                { "type": "float", "name": "ve_mps" },
+                { "type": "float", "name": "vd_mps" },
+                { "type": "float", "name": "roll_deg" },
+                { "type": "float", "name": "pitch_deg" },
+                { "type": "float", "name": "yaw_deg" },
+                { "type": "float", "name": "gamma_deg" },
+                { "type": "float", "name": "airspeed_kt" },
+                { "type": "float", "name": "ref_pressure_inhg" },
+                { "type": "float", "name": "temp_C" },
+                { "type": "float", "name": "ax_mps2" },
+                { "type": "float", "name": "ay_mps2" },
+                { "type": "float", "name": "az_mps2" },
+                { "type": "float", "name": "p_rps" },
+                { "type": "float", "name": "q_rps" },
+                { "type": "float", "name": "r_rps" },
+                { "type": "float", "name": "ail_cmd_norm" },
+                { "type": "float", "name": "ele_cmd_norm" },
+                { "type": "float", "name": "rud_cmd_norm" },
+                { "type": "float", "name": "thr_cmd_norm" },
+                { "type": "float", "name": "flap_cmd_norm" },
+                { "type": "string", "name": "return_ip_addr" }
+            ]
+        },
+        {
+            "name": "terrain_v1",
+            "desc": "terrain height v1",
+            "date": "May 2, 2024",
+            "fields": [
+                { "type": "float", "name": "terrain_height_m" }
+            ]
+        }
+    ]
+}
