@@ -132,7 +132,7 @@ def gen_cpp_header():
         result.append("using std::string;")
         result.append("")
     if not args.no_props:
-        result.append("#include \"props2.h\"  // github.com/RiceCreekUAS/props/v2")
+        result.append("#include \"props2.h\"  // github.com/NorthStarUAS/props2")
         result.append("")
     result.append("namespace %s {" % namespace)
     result.append("")
