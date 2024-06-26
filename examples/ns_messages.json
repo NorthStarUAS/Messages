@@ -1,11 +1,11 @@
 {
-    "namespace": "rc_message",
-    
+    "namespace": "ns_message",
+
     "constants": [
         { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
         { "type": "uint8_t", "name": "ap_channels", "value": 6, "desc": "number of sbus channels" }
     ],
-    
+
     "messages": [
         {
             "name": "gps_v3",
