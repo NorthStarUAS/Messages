@@ -41,5 +41,6 @@
     "ap_targets_v1": 59,
     "mission_v1": 60,
     "effectors_v1": 61,
-    "inceptors_v1": 62
+    "inceptors_v1": 62,
+    "inceptors_v2": 63
 }

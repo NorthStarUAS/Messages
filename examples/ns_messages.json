@@ -8,27 +8,6 @@
 
     "messages": [
         {
-            "name": "gps_v3",
-            "desc": "gps v3 message",
-            "date": "April 30, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "double", "name": "latitude_deg" },
-                { "type": "double", "name": "longitude_deg" },
-                { "type": "float", "name": "altitude_m" },
-                { "type": "float", "name": "vn_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "ve_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vd_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "double", "name": "unixtime_sec" },
-                { "type": "uint8_t", "name": "satellites" },
-                { "type": "float", "name": "horiz_accuracy_m", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vert_accuracy_m", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "pdop", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "uint8_t", "name": "fix_type" }
-            ]
-        },
-        {
             "name": "gps_v4",
             "desc": "gps v4 message",
             "date": "March 21, 2018",
@@ -72,26 +51,6 @@
             ]
         },
         {
-            "name": "imu_v4",
-            "desc": "imu v4 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "p_rad_sec" },
-                { "type": "float", "name": "q_rad_sec" },
-                { "type": "float", "name": "r_rad_sec" },
-                { "type": "float", "name": "ax_mps_sec" },
-                { "type": "float", "name": "ay_mps_sec" },
-                { "type": "float", "name": "az_mps_sec" },
-                { "type": "float", "name": "hx" },
-                { "type": "float", "name": "hy" },
-                { "type": "float", "name": "hz" },
-                { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "imu_v5",
             "desc": "imu v5 message",
             "date": "March 29, 2020",
@@ -122,9 +81,6 @@
             "desc": "imu v6 message",
             "date": "September 3, 2021",
             "fields": [
-                // 3754.82165 = +/-500dps (8.7266rps) spread across int16
-                // 835.296217 = +/-4g (39.228mps^2) spread across int16
-                // 3000 = mags might range +/- 10?
                 { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "float", "name": "ax_raw", "pack_type": "int16_t", "pack_scale": 835.296217 },
@@ -143,25 +99,6 @@
                 { "type": "float", "name": "hy", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "float", "name": "hz", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 250 }
-            ]
-        },
-        {
-            "name": "airdata_v6",
-            "desc": "airdata v6 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "pressure_mbar", "pack_type": "uint16_t", "pack_scale": 10 },
-                { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "airspeed_smoothed_kt", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "altitude_smoothed_m" },
-                { "type": "float", "name": "altitude_true_m" },
-                { "type": "float", "name": "pressure_vertical_speed_fps", "pack_type": "int16_t", "pack_scale": 600 },
-                { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "wind_speed_kt", "pack_type": "uint8_t", "pack_scale": 4 },
-                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
-                { "type": "uint8_t", "name": "status" }
             ]
         },
         {
@@ -196,40 +133,14 @@
                 { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
                 { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
                 { "type": "float", "name": "altitude_agl_m" },
-                { "type": "float", "name": "altitude_true_m" }, // not computed on fmu
-                { "type": "float", "name": "altitude_ground_m" }, // there just isn't a better place for this
+                { "type": "float", "name": "altitude_true_m" },
+                { "type": "float", "name": "altitude_ground_m" },
                 { "type": "uint8_t", "name": "is_airborne" },
                 { "type": "uint32_t", "name": "flight_timer_millis" },
                 { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
                 { "type": "float", "name": "wind_speed_mps", "pack_type": "uint8_t", "pack_scale": 10 },
                 { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
                 { "type": "uint16_t", "name": "error_count" }
-            ]
-        },
-        {
-            "name": "filter_v4",
-            "desc": "nav filter v4 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "double", "name": "latitude_deg" },
-                { "type": "double", "name": "longitude_deg" },
-                { "type": "float", "name": "altitude_m" },
-                { "type": "float", "name": "vn_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "ve_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vd_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "yaw_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "p_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "q_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "r_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "ax_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "ay_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "az_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "uint8_t", "name": "sequence_num" },
-                { "type": "uint8_t", "name": "status" }
             ]
         },
         {
@@ -306,24 +217,6 @@
             ]
         },
         {
-            "name": "actuator_v2",
-            "desc": "actuator v2 message",
-            "date": "April 30, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "float", "name": "aileron", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "float", "name": "elevator", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "float", "name": "throttle", "pack_type": "uint16_t", "pack_scale": 60000 },
-                { "type": "float", "name": "rudder", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "float", "name": "channel5", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "float", "name": "flaps", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "float", "name": "channel7", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "float", "name": "channel8", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "actuator_v3",
             "desc": "actuator v3 message",
             "date": "March 21, 2018",
@@ -351,17 +244,6 @@
             ]
         },
         {
-            "name": "pilot_v3",
-            "desc": "pilot v3 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "channel[8]", "pack_type": "int16_t", "pack_scale": 20000 },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "pilot_v4",
             "desc": "pilot v4 message",
             "date": "September 3, 2021",
@@ -375,10 +257,17 @@
             ]
         },
         {
-            "name": "inceptors_v1",
+            "name": "inceptors_v2",
             "fields": [
-                { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "roll", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "pitch", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "yaw", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "power", "pack_type": "uint16_t", "pack_scale": 60000 },
+                { "type": "float", "name": "flaps", "pack_type": "uint16_t", "pack_scale": 60000 },
+                { "type": "uint8_t", "name": "gear" },
+                { "type": "float", "name": "aux1", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "aux2", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "float", "name": "channel[ap_channels]", "pack_type": "int16_t", "pack_scale": 2000 }
             ]
         },
@@ -392,31 +281,6 @@
                 { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.5 }
-            ]
-        },
-        {
-            "name": "ap_status_v6",
-            "desc": "autopilot status v6 message",
-            "date": "September 24, 2017",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "uint8_t", "name": "flags" },
-                { "type": "float", "name": "groundtrack_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint16_t", "name": "altitude_msl_ft" },
-                { "type": "uint16_t", "name": "altitude_ground_m" },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "airspeed_kt", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint16_t", "name": "flight_timer" },
-                { "type": "uint16_t", "name": "target_waypoint_idx" },
-                { "type": "double", "name": "wp_longitude_deg" },
-                { "type": "double", "name": "wp_latitude_deg" },
-                { "type": "uint16_t", "name": "wp_index" },
-                { "type": "uint16_t", "name": "route_size" },
-                { "type": "uint8_t", "name": "task_id" },
-                { "type": "uint16_t", "name": "task_attribute" },
-                { "type": "uint8_t", "name": "sequence_num" }
             ]
         },
         {
@@ -477,21 +341,6 @@
             ]
         },
         {
-            "name": "system_health_v5",
-            "desc": "system health v5 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "system_load_avg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "avionics_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "main_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.1 }
-            ]
-        },
-        {
             "name": "system_health_v6",
             "desc": "system health v6 message",
             "date": "April 1, 2020",
@@ -521,16 +370,6 @@
                 { "type": "uint32_t", "name": "available_memory" },
                 { "type": "uint16_t", "name": "byte_rate" },
                 { "type": "uint16_t", "name": "main_loop_timer_misses" }
-            ]
-        },
-        {
-            "name": "event_v1",
-            "desc": "event v1 message",
-            "date": "March 21, 2018",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "double", "name": "timestamp_sec" },
-                { "type": "string", "name": "message" }
             ]
         },
         {
