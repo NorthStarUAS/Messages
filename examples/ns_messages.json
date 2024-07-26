@@ -267,8 +267,7 @@
                 { "type": "float", "name": "flaps", "pack_type": "uint16_t", "pack_scale": 60000 },
                 { "type": "uint8_t", "name": "gear" },
                 { "type": "float", "name": "aux1", "pack_type": "int16_t", "pack_scale": 30000 },
-                { "type": "float", "name": "aux2", "pack_type": "int16_t", "pack_scale": 30000 },
-                { "type": "float", "name": "channel[ap_channels]", "pack_type": "int16_t", "pack_scale": 2000 }
+                { "type": "float", "name": "aux2", "pack_type": "int16_t", "pack_scale": 30000 }
             ]
         },
         {
