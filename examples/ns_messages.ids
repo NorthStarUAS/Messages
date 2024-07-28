@@ -42,5 +42,6 @@
     "mission_v1": 60,
     "effectors_v1": 61,
     "inceptors_v1": 62,
-    "inceptors_v2": 63
+    "inceptors_v2": 63,
+    "event_v3": 64
 }

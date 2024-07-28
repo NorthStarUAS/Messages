@@ -384,6 +384,15 @@
             ]
         },
         {
+            "name": "event_v3",
+            "desc": "event v3 message",
+            "date": "July 28, 2024",
+            "fields": [
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "string", "name": "message" }
+            ]
+        },
+        {
             "name": "command_v1",
             "desc": "command v1 message",
             "date": "September 5, 2021",
