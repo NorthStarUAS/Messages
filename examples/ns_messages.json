@@ -285,36 +285,10 @@
             ]
         },
         {
-            "name": "ap_status_v7",
-            "desc": "autopilot status v7 message",
-            "date": "March 21, 2018",
+            "name": "fcs_refs_v1",
+            "desc": "fcs reference values v1 message",
+            "date": "August 13, 2024",
             "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "uint8_t", "name": "flags" },
-                { "type": "float", "name": "groundtrack_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "altitude_msl_ft", "pack_type": "uint16_t", "pack_scale": 1 },
-                { "type": "float", "name": "altitude_ground_m", "pack_type": "uint16_t", "pack_scale": 1 },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "airspeed_kt", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "flight_timer", "pack_type": "uint16_t", "pack_scale": 1  },
-                { "type": "uint16_t", "name": "target_waypoint_idx" },
-                { "type": "double", "name": "wp_longitude_deg" },
-                { "type": "double", "name": "wp_latitude_deg" },
-                { "type": "uint16_t", "name": "wp_index" },
-                { "type": "uint16_t", "name": "route_size" },
-                { "type": "uint8_t", "name": "task_id" },
-                { "type": "uint16_t", "name": "task_attribute" },
-                { "type": "uint8_t", "name": "sequence_num" }
-            ]
-        },
-        {
-            "name": "ap_targets_v1",
-            "desc": "autopilot targets v1 message",
-            "date": "September 7, 2021",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "float", "name": "groundtrack_deg", "pack_type": "int16_t", "pack_scale": 10 },
                 { "type": "float", "name": "altitude_agl_ft", "pack_type": "uint16_t", "pack_scale": 10 },
@@ -328,7 +302,6 @@
             "desc": "mission v1 message",
             "date": "September 7, 2021",
             "fields": [
-                { "type": "uint8_t", "name": "index" },
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "uint8_t", "name": "is_airborne" },
                 { "type": "float", "name": "flight_timer", "pack_type": "uint16_t", "pack_scale": 1  },

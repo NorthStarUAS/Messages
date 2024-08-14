@@ -43,5 +43,6 @@
     "effectors_v1": 61,
     "inceptors_v1": 62,
     "inceptors_v2": 63,
-    "event_v3": 64
+    "event_v3": 64,
+    "fcs_refs_v1": 65
 }
