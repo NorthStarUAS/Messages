@@ -265,8 +265,6 @@
             "date": "September 7, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
-                { "type": "uint8_t", "name": "is_airborne" },
-                { "type": "float", "name": "flight_timer", "pack_type": "uint16_t", "pack_scale": 1  },
                 { "type": "string", "name": "task_name" },
                 { "type": "uint16_t", "name": "task_attribute" },
                 { "type": "uint16_t", "name": "route_size" },
