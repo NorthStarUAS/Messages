@@ -300,6 +300,7 @@
                 { "type": "uint8_t", "name": "master_hz" },
                 { "type": "uint32_t", "name": "baud" },
                 { "type": "uint32_t", "name": "available_memory" },
+                { "type": "uint16_t", "name": "link_state" },
                 { "type": "uint16_t", "name": "byte_rate" },
                 { "type": "uint16_t", "name": "main_loop_timer_misses" }
             ]
