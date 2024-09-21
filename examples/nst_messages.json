@@ -1,5 +1,5 @@
 {
-    "namespace": "ns_message",
+    "namespace": "nst_message",
 
     "constants": [
         { "type": "uint8_t", "name": "sbus_channels", "value": 16, "desc": "number of sbus channels" },
@@ -126,7 +126,7 @@
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "float", "name": "baro_press_pa", "pack_type": "uint16_t", "pack_scale": 0.5 },
-                { "type": "float", "name": "diff_press_pa", "pack_type": "uint16_t", "pack_scale": 10 },
+                { "type": "float", "name": "diff_press_pa", "pack_type": "int16_t", "pack_scale": 2 },
                 { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
                 { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
                 { "type": "float", "name": "altitude_agl_m" },
