@@ -232,7 +232,7 @@
                 { "type": "float", "name": "aux1", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "float", "name": "aux2", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "uint8_t", "name": "master_switch" },
-                { "type": "uint8_t", "name": "throttle_safety" }
+                { "type": "uint8_t", "name": "throttle_enable" }
             ]
         },
         {
