@@ -134,8 +134,8 @@
                 { "type": "float", "name": "altitude_ground_m" },
                 { "type": "uint8_t", "name": "is_airborne" },
                 { "type": "uint32_t", "name": "flight_timer_millis" },
-                { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "wind_speed_mps", "pack_type": "uint8_t", "pack_scale": 10 },
+                { "type": "float", "name": "wind_deg", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "wind_mps", "pack_type": "uint8_t", "pack_scale": 10 },
                 { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
                 { "type": "uint16_t", "name": "error_count" }
             ]
@@ -232,7 +232,7 @@
                 { "type": "float", "name": "aux1", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "float", "name": "aux2", "pack_type": "int16_t", "pack_scale": 30000 },
                 { "type": "uint8_t", "name": "master_switch" },
-                { "type": "uint8_t", "name": "throttle_enable" }
+                { "type": "uint8_t", "name": "motor_enable" }
             ]
         },
         {
@@ -242,8 +242,7 @@
                 { "type": "float", "name": "avionics_vcc" , "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "main_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
                 { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.5 }
+                { "type": "float", "name": "pwm_vcc", "pack_type": "uint16_t", "pack_scale": 1000 }
             ]
         },
         {
@@ -268,10 +267,10 @@
                 { "type": "string", "name": "task_name" },
                 { "type": "uint16_t", "name": "task_attribute" },
                 { "type": "uint16_t", "name": "route_size" },
-                { "type": "uint16_t", "name": "target_waypoint_idx" },
-                { "type": "uint16_t", "name": "wp_index" },
-                { "type": "int32_t", "name": "wp_longitude_raw" },
-                { "type": "int32_t", "name": "wp_latitude_raw" }
+                { "type": "uint16_t", "name": "target_wpt_idx" },
+                { "type": "uint16_t", "name": "wpt_index" },
+                { "type": "int32_t", "name": "wpt_longitude_raw" },
+                { "type": "int32_t", "name": "wpt_latitude_raw" }
             ]
         },
         {
