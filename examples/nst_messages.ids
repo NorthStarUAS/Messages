@@ -44,5 +44,9 @@
     "inceptors_v1": 62,
     "inceptors_v2": 63,
     "event_v3": 64,
-    "fcs_refs_v1": 65
+    "fcs_refs_v1": 65,
+    "airdata_v9": 66,
+    "env_state_v1": 67,
+    "power_v2": 68,
+    "status_v8": 69
 }

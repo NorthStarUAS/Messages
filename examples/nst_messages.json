@@ -8,29 +8,59 @@
 
     "messages": [
         {
-            "name": "gps_v4",
-            "desc": "gps v4 message",
-            "date": "March 21, 2018",
+            "name": "airdata_v8",
+            "desc": "airdata (and env state) sensor message",
+            "date": "September 5, 2021",
             "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "double", "name": "latitude_deg" },
-                { "type": "double", "name": "longitude_deg" },
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "baro_press_pa", "pack_type": "uint16_t", "pack_scale": 0.5 },
+                { "type": "float", "name": "diff_press_pa", "pack_type": "int16_t", "pack_scale": 2 },
+                { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
+                { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
+                { "type": "float", "name": "altitude_agl_m" },
+                { "type": "float", "name": "altitude_true_m" },
+                { "type": "float", "name": "altitude_ground_m" },
+                { "type": "uint8_t", "name": "is_airborne" },
+                { "type": "uint32_t", "name": "flight_timer_millis" },
+                { "type": "float", "name": "wind_deg", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "wind_mps", "pack_type": "uint8_t", "pack_scale": 10 },
+                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
+                { "type": "uint16_t", "name": "error_count" }
+            ]
+        },
+        {
+            "name": "airdata_v9",
+            "desc": "airdata sensor message",
+            "date": "November 27, 2024",
+            "fields": [
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "baro_press_pa", "pack_type": "uint16_t", "pack_scale": 0.5 },
+                { "type": "float", "name": "diff_press_pa", "pack_type": "int16_t", "pack_scale": 2 },
+                { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
+                { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
                 { "type": "float", "name": "altitude_m" },
-                { "type": "float", "name": "vn_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "ve_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vd_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "double", "name": "unixtime_sec" },
-                { "type": "uint8_t", "name": "satellites" },
-                { "type": "float", "name": "horiz_accuracy_m", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vert_accuracy_m", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "pdop", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "uint8_t", "name": "fix_type" }
+                { "type": "uint16_t", "name": "error_count" }
+            ]
+        },
+        {
+            "name": "env_state_v1",
+            "desc": "environment state message",
+            "date": "November 27, 2024",
+            "fields": [
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "altitude_agl_m" },
+                { "type": "float", "name": "altitude_true_m" },
+                { "type": "float", "name": "altitude_ground_m" },
+                { "type": "uint8_t", "name": "is_airborne" },
+                { "type": "uint32_t", "name": "flight_timer_millis" },
+                { "type": "float", "name": "wind_deg", "pack_type": "uint16_t", "pack_scale": 100 },
+                { "type": "float", "name": "wind_mps", "pack_type": "uint8_t", "pack_scale": 10 },
+                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 }
             ]
         },
         {
             "name": "gps_v5",
-            "desc": "gps v5 message",
+            "desc": "gps sensor message",
             "date": "September 3, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
@@ -50,34 +80,8 @@
             ]
         },
         {
-            "name": "imu_v5",
-            "desc": "imu v5 message",
-            "date": "March 29, 2020",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "p_rad_sec" },
-                { "type": "float", "name": "q_rad_sec" },
-                { "type": "float", "name": "r_rad_sec" },
-                { "type": "float", "name": "ax_mps_sec" },
-                { "type": "float", "name": "ay_mps_sec" },
-                { "type": "float", "name": "az_mps_sec" },
-                { "type": "float", "name": "hx" },
-                { "type": "float", "name": "hy" },
-                { "type": "float", "name": "hz" },
-                { "type": "float", "name": "ax_raw" },
-                { "type": "float", "name": "ay_raw" },
-                { "type": "float", "name": "az_raw" },
-                { "type": "float", "name": "hx_raw" },
-                { "type": "float", "name": "hy_raw" },
-                { "type": "float", "name": "hz_raw" },
-                { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
             "name": "imu_v6",
-            "desc": "imu v6 message",
+            "desc": "imu sensor message",
             "date": "September 3, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
@@ -100,78 +104,20 @@
             ]
         },
         {
-            "name": "airdata_v7",
-            "desc": "airdata v7 message",
-            "date": "June 17, 2019",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "pressure_mbar", "pack_type": "uint16_t", "pack_scale": 10 },
-                { "type": "float", "name": "temp_C", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "airspeed_smoothed_kt", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "altitude_smoothed_m" },
-                { "type": "float", "name": "altitude_true_m" },
-                { "type": "float", "name": "pressure_vertical_speed_fps", "pack_type": "int16_t", "pack_scale": 600 },
-                { "type": "float", "name": "wind_dir_deg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "wind_speed_kt", "pack_type": "uint8_t", "pack_scale": 4 },
-                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
-                { "type": "uint16_t", "name": "error_count" },
-                { "type": "uint8_t", "name": "status" }
-            ]
-        },
-        {
-            "name": "airdata_v8",
-            "desc": "airdata v8 message",
-            "date": "September 5, 2021",
+            "name": "power_v2",
+            "desc": "power sensor message",
+            "date": "November 27, 2024",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
-                { "type": "float", "name": "baro_press_pa", "pack_type": "uint16_t", "pack_scale": 0.5 },
-                { "type": "float", "name": "diff_press_pa", "pack_type": "int16_t", "pack_scale": 2 },
-                { "type": "float", "name": "air_temp_C", "pack_type": "int16_t", "pack_scale": 250 },
-                { "type": "float", "name": "airspeed_mps", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "altitude_agl_m" },
-                { "type": "float", "name": "altitude_true_m" },
-                { "type": "float", "name": "altitude_ground_m" },
-                { "type": "uint8_t", "name": "is_airborne" },
-                { "type": "uint32_t", "name": "flight_timer_millis" },
-                { "type": "float", "name": "wind_deg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "wind_mps", "pack_type": "uint8_t", "pack_scale": 10 },
-                { "type": "float", "name": "pitot_scale_factor", "pack_type": "uint8_t", "pack_scale": 100 },
-                { "type": "uint16_t", "name": "error_count" }
-            ]
-        },
-        {
-            "name": "filter_v5",
-            "desc": "nav filter v5 message",
-            "date": "April 2, 2020",
-            "fields": [
-                { "type": "uint8_t", "name": "index" },
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "double", "name": "latitude_deg" },
-                { "type": "double", "name": "longitude_deg" },
-                { "type": "float", "name": "altitude_m" },
-                { "type": "float", "name": "vn_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "ve_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "vd_ms", "pack_type": "int16_t", "pack_scale": 100 },
-                { "type": "float", "name": "roll_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "pitch_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "yaw_deg", "pack_type": "int16_t", "pack_scale": 10 },
-                { "type": "float", "name": "p_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "q_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "r_bias", "pack_type": "int16_t", "pack_scale": 10000 },
-                { "type": "float", "name": "ax_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "ay_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "az_bias", "pack_type": "int16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "max_pos_cov", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "float", "name": "max_vel_cov", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "max_att_cov", "pack_type": "uint16_t", "pack_scale": 10000 },
-                { "type": "uint8_t", "name": "sequence_num" },
-                { "type": "uint8_t", "name": "status" }
+                { "type": "float", "name": "avionics_vcc" , "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "main_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
+                { "type": "float", "name": "pwm_vcc", "pack_type": "uint16_t", "pack_scale": 1000 }
             ]
         },
         {
             "name": "nav_v6",
-            "desc": "nav filter v6 message",
+            "desc": "nav filter message",
             "date": "September 4, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
@@ -190,7 +136,7 @@
         },
         {
             "name": "nav_metrics_v6",
-            "desc": "nav filter metrics v6 message",
+            "desc": "nav filter metrics message",
             "date": "September 4, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "metrics_millis" },
@@ -212,15 +158,9 @@
             ]
         },
         {
-            "name": "effectors_v1",
-            "date": "September 18, 2021",
-            "fields": [
-                { "type": "uint32_t", "name": "millis" },
-                { "type": "float", "name": "channel[8]", "pack_type": "int16_t", "pack_scale": 20000 }
-            ]
-        },
-        {
             "name": "inceptors_v2",
+            "desc": "inceptors (pilot inputs) message",
+            "date": "November 27, 2024",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "float", "name": "roll", "pack_type": "int16_t", "pack_scale": 30000 },
@@ -236,18 +176,17 @@
             ]
         },
         {
-            "name": "power_v1",
+            "name": "effectors_v1",
+            "desc": "effectors (actuator outputs) message",
+            "date": "September 18, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
-                { "type": "float", "name": "avionics_vcc" , "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "main_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "pwm_vcc", "pack_type": "uint16_t", "pack_scale": 1000 }
+                { "type": "float", "name": "channel[8]", "pack_type": "int16_t", "pack_scale": 20000 }
             ]
         },
         {
             "name": "fcs_refs_v1",
-            "desc": "fixme: delete? autopilot targets v1 message",
+            "desc": "FCS reference (target) values",
             "date": "September 7, 2021",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
@@ -260,8 +199,8 @@
         },
         {
             "name": "mission_v1",
-            "desc": "mission v1 message",
-            "date": "September 7, 2021",
+            "desc": "mission refs message",
+            "date": "November 27, 2024",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "string", "name": "task_name" },
@@ -274,24 +213,9 @@
             ]
         },
         {
-            "name": "system_health_v6",
-            "desc": "system health v6 message",
-            "date": "April 1, 2020",
-            "fields": [
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "float", "name": "system_load_avg", "pack_type": "uint16_t", "pack_scale": 100 },
-                { "type": "uint16_t", "name": "fmu_timer_misses" },
-                { "type": "float", "name": "avionics_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "main_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "cell_vcc", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "main_amps", "pack_type": "uint16_t", "pack_scale": 1000 },
-                { "type": "float", "name": "total_mah", "pack_type": "uint16_t", "pack_scale": 0.1 }
-            ]
-        },
-        {
-            "name": "status_v7",
-            "desc": "fmu status v7 message",
-            "date": "September 5, 2021",
+            "name": "status_v8",
+            "desc": "fmu status message",
+            "date": "November 27, 2024",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
                 { "type": "uint16_t", "name": "serial_number" },
@@ -301,22 +225,13 @@
                 { "type": "uint32_t", "name": "available_memory" },
                 { "type": "uint16_t", "name": "link_state" },
                 { "type": "uint16_t", "name": "byte_rate" },
-                { "type": "uint16_t", "name": "main_loop_timer_misses" }
-            ]
-        },
-        {
-            "name": "event_v2",
-            "desc": "event v2 message",
-            "date": "July 2, 2019",
-            "fields": [
-                { "type": "float", "name": "timestamp_sec" },
-                { "type": "uint8_t", "name": "sequence_num" },
-                { "type": "string", "name": "message" }
+                { "type": "uint16_t", "name": "main_loop_timer_misses" },
+                { "type": "uint16_t", "name": "max_log_buf" }
             ]
         },
         {
             "name": "event_v3",
-            "desc": "event v3 message",
+            "desc": "event message",
             "date": "July 28, 2024",
             "fields": [
                 { "type": "uint32_t", "name": "millis" },
@@ -325,7 +240,7 @@
         },
         {
             "name": "command_v1",
-            "desc": "command v1 message",
+            "desc": "command message",
             "date": "September 5, 2021",
             "fields": [
                 { "type": "uint16_t", "name": "sequence_num" },
