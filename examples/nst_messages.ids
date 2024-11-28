@@ -48,5 +48,7 @@
     "airdata_v9": 66,
     "env_state_v1": 67,
     "power_v2": 68,
-    "status_v8": 69
+    "status_v8": 69,
+    "environment_v1": 70,
+    "fcs_outputs_v1": 71
 }

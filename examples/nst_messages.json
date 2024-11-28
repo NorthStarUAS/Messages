@@ -43,7 +43,7 @@
             ]
         },
         {
-            "name": "env_state_v1",
+            "name": "environment_v1",
             "desc": "environment state message",
             "date": "November 27, 2024",
             "fields": [
@@ -176,6 +176,20 @@
             ]
         },
         {
+            "name": "fcs_outputs_v1",
+            "desc": "fcs outputs message",
+            "date": "November 27, 2024",
+            "fields": [
+                { "type": "uint32_t", "name": "millis" },
+                { "type": "float", "name": "roll", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "pitch", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "yaw", "pack_type": "int16_t", "pack_scale": 30000 },
+                { "type": "float", "name": "power", "pack_type": "uint16_t", "pack_scale": 60000 },
+                { "type": "float", "name": "flaps", "pack_type": "uint16_t", "pack_scale": 60000 },
+                { "type": "uint8_t", "name": "gear" }
+            ]
+        },
+        {
             "name": "effectors_v1",
             "desc": "effectors (actuator outputs) message",
             "date": "September 18, 2021",
@@ -226,7 +240,8 @@
                 { "type": "uint16_t", "name": "link_state" },
                 { "type": "uint16_t", "name": "byte_rate" },
                 { "type": "uint16_t", "name": "main_loop_timer_misses" },
-                { "type": "uint16_t", "name": "max_log_buf" }
+                { "type": "uint16_t", "name": "max_log_buf" },
+                { "type": "uint16_t", "name": "log_buf_overruns" }
             ]
         },
         {
