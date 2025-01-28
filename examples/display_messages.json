@@ -37,10 +37,12 @@
             ]
         },
         {
-            "name": "terrain_v1",
-            "desc": "terrain height v1",
-            "date": "May 2, 2024",
+            "name": "terrain_v2",
+            "desc": "terrain height v2",
+            "date": "January 28, 2025",
             "fields": [
+                { "type": "double", "name": "longitude_deg" },
+                { "type": "double", "name": "latitude_deg" },
                 { "type": "float", "name": "terrain_height_m" }
             ]
         }
